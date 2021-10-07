@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>典型环节的频率特性</title>
+    <meta description="自动控制原理中的典型环节频率特性">
+    </meta>
+    <meta charset="utf-8">
+    </meta>
+    <link rel="stylesheet" href="index.css">
+    <!-- Plotly.js https://plotly.com/javascript/ -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--https://github.com/nicolaspanel/numjs -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script> -->
+    <!-- complex and polynomial 📚https://github.com/infusion/Complex.js/-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/complex.js@2.0.15/complex.js"
+        integrity="sha256-HdJsg2CBvSXWgGnrUzK3dkAsisQD2LR3y27haDa6g2k=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/polynomial@1.4.5/polynomial.min.js"
+        integrity="sha256-SuOpSFtCVdbAWbBMpVO43VteAAtpyeu7DsJQdUkkJxA=" crossorigin="anonymous"></script> -->
+
+
+    <!-- katex https://katex.org/docs/autorender.html -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css"
+        integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"
+        integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/contrib/auto-render.min.js"
+        integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+</head>
+
+<body>
+    <h1>典型环节的频率特性</h1>
+    <br>
+    <table id="system">
+        <thead>
+            <tr>
+                <th></th>
+                <th>积分环节</th>
+                <th>惯性环节</th>
+                <th>振荡环节</th>
+                <th>微分环节</th>
+                <th>一阶微分环节</th>
+                <th>二阶微分环节</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>表达式</td>
+                <td>
+                    <div>
+                        $$\frac{1}{s}$$
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        $$\frac{1}{Ts+1}$$
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        $$\frac{1}{\frac{s^2}{\omega_n^2}+2 \zeta \frac{s}{\omega_n}+1}$$
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        $$s$$
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        $$Ts+1$$
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        $$\frac{s^2}{\omega_n^2}+2 \zeta \frac{s}{\omega_n}+1$$
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th><input type="checkbox" id='plot0'></input></th>
+                <th><input type="checkbox" class="sysvisible" id='plot1'></input></th>
+                <th><input type="checkbox" class="sysvisible" id='plot2' checked=true></input></th>
+                <th><input type="checkbox" class="sysvisible" id='plot3'></input></th>
+                <th><input type="checkbox" class="sysvisible" id='plot4'></input></th>
+                <th><input type="checkbox" class="sysvisible" id='plot5'></input></th>
+                <th><input type="checkbox" class="sysvisible" id='plot6'></input></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <table id="param">
+        <thead>
+            <tr>
+                <th>时间常数</th>
+                <th>自然频率</th>
+                <th>阻尼比</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>$$T$$</td>
+                <td>$$\omega_n$$</td>
+                <td>$$\zeta$$</td>
+            </tr>
+            <tr>
+                <td><input type="number" class="sysparam" id="T" name="T" step=0.01 min=0.1 max=10 value=1></td>
+                <td><input type="number" class="sysparam" id="omega_n" name="omega_n" step=0.01 min=0.1 max=10 value=1>
+                </td>
+                <td><input type="number" class="sysparam" id="zeta" name="zeta" step=0.01 max=1 min=0 value=0.4></td>
+            </tr>
+        </tbody>
+    </table>
+    <noscript>This page contains webassembly and javascript content, please enable javascript in your
+        browser.</noscript>
+    <script src="./bootstrap.js"></script>
+    <div id="bode_plot"></div>
+    <div id="nyquist_plot"></div>
+</body>
+
+</html>
