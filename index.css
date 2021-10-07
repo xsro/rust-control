@@ -1,0 +1,15 @@
+table{
+    display:inline-block
+}
+
+#bode_plot{
+    display:inline-block;
+    height: 400px;
+    width: 600px;
+}
+
+#nyquist_plot{
+    display:inline-block;
+    height: 400px;
+    width: 400px;
+}
