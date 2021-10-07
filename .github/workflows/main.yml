@@ -1,0 +1,44 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+      # - run: cargo test
+      # - run: wasm-pack test --headless --chrome
+      # - run: wasm-pack test --headless --firefox
+
+      - name: build
+        run: wasm-pack build
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+        working-directory: www
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./www/dist
