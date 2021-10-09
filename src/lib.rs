@@ -1,8 +1,21 @@
+mod config;
 mod utils;
 
-mod config;
-mod matlab;
-mod model;
+/// mod for creating control system model
+pub mod model;
+
+/// mod for frequent-domain analysis
+pub mod freq;
+/// mod for time-domain analysis
+pub mod time;
+
+/// mod for Control system design
+pub mod design;
+/// mod for stability analysis
+pub mod stability;
+
+/// mod exposing matlab-like functions
+pub mod matlab;
 
 use wasm_bindgen::prelude::*;
 
