@@ -1,17 +1,7 @@
 import * as wasm from "rust-control";
+import { logspace } from '../utils/utils';
 
-function logspace(start, end, total) {
-    const div = end / start;
-    let step = Math.log(div) / total;
-    step = Math.exp(step);
-    let val = start;
-    return new Array(total).fill(0).map(
-        (_, idx) => {
-            if (idx !== 0) val = val * step
-            return val
-        }
-    )
-}
+const demo1 = document.getElementById("demo1");
 
 function Bode_plot(omegas, syslist, visibles) {
     const data = [];
@@ -95,7 +85,6 @@ function Nyquist_plot(omegas, syslist, visibles) {
 }
 
 function load() {
-
     let T = document.getElementById('T').value;
     T = parseFloat(T);
     let omega_n = document.getElementById('omega_n').value;
@@ -167,22 +156,29 @@ function load() {
     Nyquist_plot(omegas, syslist, visibles);
 }
 
-load();
-
-document.getElementById('plot0').addEventListener(
-    'change', e => {
-        for (let i = 1; i <= 6; i++) {
-            const ele = document.getElementById('plot' + i.toString());
-            ele.checked = e.target.checked;
+export function activate() {
+    demo1.hidden = false;
+    load();
+    document.getElementById('plot0').addEventListener(
+        'change', e => {
+            for (let i = 1; i <= 6; i++) {
+                const ele = document.getElementById('plot' + i.toString());
+                ele.checked = e.target.checked;
+            }
+            load()
         }
-        load()
+    )
+
+    for (const ele of document.body.getElementsByClassName("sysvisible")) {
+        ele.addEventListener('change', load)
     }
-)
 
-for (const ele of document.body.getElementsByClassName("sysvisible")) {
-    ele.addEventListener('change', load)
+    for (const ele of document.body.getElementsByClassName("sysparam")) {
+        ele.addEventListener('input', (e) => {
+            document.getElementById(ele.id + "-value").innerHTML = e.target.value;
+        })
+        ele.addEventListener('change', load)
+    }
 }
 
-for (const ele of document.body.getElementsByClassName("sysparam")) {
-    ele.addEventListener('change', load)
-}
+
