@@ -31,10 +31,10 @@ jobs:
         with:
           node-version: "16"
 
-      - name: npm install, build
+      - name: yarn install, build
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn build --mode=production
         working-directory: www
 
       - name: Deploy
