@@ -1,5 +1,5 @@
-use crate::config::DType;
 use crate::model;
+type DType = f64;
 
 /// # matlab like functions
 ///
@@ -9,7 +9,11 @@ use crate::model;
 ///
 /// Create a transfer function system model.
 ///
-pub fn tf(num: Vec<DType>, den: Vec<DType>, ts: Option<DType>) -> model::TransferFunction {
+pub fn tf(
+    num: Vec<DType>,
+    den: Vec<DType>,
+    ts: Option<DType>,
+) -> model::TransferFunction<DType, DType> {
     model::TransferFunction::from(num, den, ts)
 }
 
@@ -21,7 +25,7 @@ pub fn zpk(
     poles: Vec<DType>,
     gain: DType,
     ts: Option<DType>,
-) -> model::ZeroPoleGain {
+) -> model::ZeroPoleGain<DType, DType> {
     model::ZeroPoleGain::from(zeros, poles, gain, ts)
 }
 

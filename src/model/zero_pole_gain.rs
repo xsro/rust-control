@@ -1,19 +1,12 @@
-use crate::config::DType;
-
-pub struct ZeroPoleGain {
-    pub zeros: Vec<DType>,
-    pub poles: Vec<DType>,
-    pub gain: DType,
-    pub sample_time: Option<DType>,
+pub struct ZeroPoleGain<T, U> {
+    pub zeros: Vec<T>,
+    pub poles: Vec<T>,
+    pub gain: T,
+    pub sample_time: Option<U>,
 }
 
-impl ZeroPoleGain {
-    pub fn from(
-        zeros: Vec<DType>,
-        poles: Vec<DType>,
-        gain: DType,
-        ts: Option<DType>,
-    ) -> ZeroPoleGain {
+impl<T, U> ZeroPoleGain<T, U> {
+    pub fn from(zeros: Vec<T>, poles: Vec<T>, gain: T, ts: Option<U>) -> ZeroPoleGain<T, U> {
         ZeroPoleGain {
             zeros: zeros,
             poles: poles,
