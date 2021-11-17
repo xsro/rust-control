@@ -1,10 +1,14 @@
 use crate::model;
-type DType = f64;
 
-/// # matlab like functions
+/// # matlab-like API of rust-Control
 ///
+/// ## Data Types for Computing
+///
+/// In this lib, We use **f64** for all computing
+pub type DType = f64;
+
 /// ## model creation
-///
+
 /// ### transfer-function model
 ///
 /// Create a transfer function system model.
