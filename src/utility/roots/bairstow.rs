@@ -5,7 +5,7 @@ use num::Complex;
 ///
 /// This method split polynomial A to polynomial B * (x^2-rx-s)
 #[allow(non_snake_case)]
-pub fn bairstow<T>(A: &Vec<T>, r0: T, s0: T, epsilon_s: T) -> Result<(Vec<T>, T, T), T>
+fn bairstow<T>(A: &Vec<T>, r0: T, s0: T, epsilon_s: T) -> Result<(Vec<T>, T, T), T>
 where
     T: num::traits::Num + Copy + num::Signed + core::cmp::PartialOrd,
 {
@@ -69,7 +69,6 @@ where
 {
     let mut a: Vec<T> = poly.clone();
     let mut result: Vec<Complex<T>> = Vec::new();
-    let two = T::one() + T::one();
     loop {
         let (b, r, s) = bairstow(&a, T::zero(), T::zero(), eps).unwrap();
         let (root1, root2) = solve_quadratic(r, s);
@@ -103,14 +102,25 @@ mod bairstow_method_tests {
         a.reverse();
         let (b, r, s) = bairstow(&a, 0.5, -0.5, 0.01).unwrap();
         assert_eq!(b, vec![2.0002748946839852, -2.0001913816133645, 1.0]);
-        assert_eq!(r, 2.999999962215324);
-        assert_eq!(s, -1.9999999186031607);
+        assert_float_absolute_eq!(r, 3.0);
+        assert_float_absolute_eq!(s, -2.0);
     }
     #[test]
     fn test_solve() {
         let mut a: Vec<f64> = vec![1.0, -5.0, 10.0, -10.0, 4.0];
         a.reverse();
-        let result = solve(&a, 0.01);
+        let result = solve(&a, 1e-6);
         assert_eq!(result.len(), a.len() - 1);
+        let should = vec![
+            Complex::from(2.0),
+            Complex::from(1.0),
+            Complex::new(1.0, 1.0),
+            Complex::new(1.0, -1.0),
+        ];
+        for i in 0..result.len() {
+            println!("{}", result[i]);
+            assert_float_absolute_eq!(result[i].re, should[i].re);
+            assert_float_absolute_eq!(result[i].im, should[i].im);
+        }
     }
 }

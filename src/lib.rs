@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate assert_float_eq;
+
 mod utils;
 
 /// mod for creating control system model
