@@ -72,24 +72,26 @@ where
     let mut a: Vec<T> = poly.clone();
     let mut result: Vec<Complex<T>> = Vec::new();
     loop {
-        let (b, r, s) = bairstow(&a, T::zero(), T::zero(), eps).unwrap();
-        let (root1, root2) = solve_quadratic(r, s);
-        result.push(root1);
-        result.push(root2);
-        match b.len() {
+        match a.len() {
             2 => {
-                result.push(Complex::from(-b[0] / b[1]));
+                result.push(Complex::from(-a[0] / a[1]));
                 break;
             }
             3 => {
-                let r = -b[1] / b[2];
-                let s = -b[0] / b[2];
+                let r = -a[1] / a[2];
+                let s = -a[0] / a[2];
                 let (root1, root2) = solve_quadratic(r, s);
                 result.push(root1);
                 result.push(root2);
                 break;
             }
-            _ => a = b,
+            _ => {
+                let (b, r, s) = bairstow(&a, T::zero(), T::zero(), eps).unwrap();
+                let (root1, root2) = solve_quadratic(r, s);
+                result.push(root1);
+                result.push(root2);
+                a = b
+            }
         };
     }
     result
