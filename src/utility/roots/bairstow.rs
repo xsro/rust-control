@@ -45,10 +45,10 @@ where
 ///solve quadratic function x^2-r*x-s=0
 fn solve_quadratic<T: num::Float + num::Signed>(r: T, s: T) -> (Complex<T>, Complex<T>) {
     let delta = r * r + s + s + s + s;
+    let two = T::one() + T::one();
     if delta.is_negative() {
         let re = r;
         let im = (-delta).sqrt();
-        let two = T::one() + T::one();
         (
             Complex::new(re / two, im / two),
             Complex::new(re / two, -im / two),
@@ -56,7 +56,6 @@ fn solve_quadratic<T: num::Float + num::Signed>(r: T, s: T) -> (Complex<T>, Comp
     } else {
         let re = r;
         let re2 = delta.sqrt();
-        let two = T::one() + T::one();
         (
             Complex::from((re + re2) / two),
             Complex::from((re - re2) / two),
@@ -65,6 +64,8 @@ fn solve_quadratic<T: num::Float + num::Signed>(r: T, s: T) -> (Complex<T>, Comp
 }
 
 /// ### solve the roots with Bairstow Method
+///
+/// `poly` should be in the older from 0 to n
 pub fn solve<T>(poly: &Vec<T>, eps: T) -> Vec<Complex<T>>
 where
     T: num::Float + num::Signed + std::fmt::Debug,
@@ -80,6 +81,7 @@ where
             3 => {
                 let r = -a[1] / a[2];
                 let s = -a[0] / a[2];
+                println!("r{:?}s{:?}", r, s);
                 let (root1, root2) = solve_quadratic(r, s);
                 result.push(root1);
                 result.push(root2);
@@ -95,6 +97,22 @@ where
         };
     }
     result
+}
+
+/// ### solve the roots with Bairstow Method2
+///
+/// `poly` should be in the older from n to 0
+pub fn solve2<T>(poly: &Vec<T>) -> Vec<Complex<T>>
+where
+    T: num::Float + num::Signed + std::fmt::Debug,
+{
+    let min = T::min_value();
+    let one = T::one();
+    let five = one + one + one + one + one;
+    let eps = (five + five + five + five) * min;
+    let mut v = poly.clone();
+    v.reverse();
+    solve(&v, eps)
 }
 
 #[cfg(test)]

@@ -14,6 +14,7 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn greet() {
+    utils::set_panic_hook();
     alert("Hello, I'm rust-control");
 }
 

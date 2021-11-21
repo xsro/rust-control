@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "prestart": "yarn install --check-files",
     "start": "webpack-dev-server"
   },
   "repository": {
