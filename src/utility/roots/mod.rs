@@ -1,1 +1,2 @@
-mod bairstow;
+///! solve roots for polynomial
+pub mod bairstow;

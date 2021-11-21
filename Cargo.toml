@@ -39,3 +39,8 @@ opt-level = "s"
 [package.metadata.wasm-pack.profile.release]
 # use this for mac m1
 # wasm-opt = false
+
+# enable katex in docs.rs 
+# see: https://docs.rs/rustdoc-katex-demo/0.1.5/rustdoc_katex_demo/#rendering-on-docsrs
+[package.metadata.docs.rs]
+rustdoc-args = [ "--html-in-header", "katex-header.html" ]

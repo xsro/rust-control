@@ -1,10 +1,10 @@
-mod state_space;
-mod transfer_function;
-mod zero_pole_gain;
+mod ss;
+mod tf;
+mod zpk;
 
-pub use state_space::StateSpace;
-pub use transfer_function::TransferFunction;
-pub use zero_pole_gain::ZeroPoleGain;
+pub use ss::StateSpace;
+pub use tf::TransferFunction;
+pub use zpk::ZeroPoleGain;
 
 pub enum LTIsystem {
     StateSpace,

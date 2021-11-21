@@ -1,9 +1,12 @@
+//! # Bairstow Method for finding roots of nonlinear quations
+//!
+//! This method computes roots by split polynomial A to polynomial B * (x^2-rx-s)
+//!
+//! - see: [Bairstow Method](https://nptel.ac.in/content/storage2/courses/122104019/numerical-analysis/Rathish-kumar/ratish-1/f3node9.html)
+
 use num;
 use num::Complex;
 
-/// Bairstow Method for finding roots of nonlinear quations
-///
-/// This method split polynomial A to polynomial B * (x^2-rx-s)
 #[allow(non_snake_case)]
 fn bairstow<T>(A: &Vec<T>, r0: T, s0: T, epsilon_s: T) -> Result<(Vec<T>, T, T), T>
 where
@@ -61,8 +64,7 @@ fn solve_quadratic<T: num::Float + num::Signed>(r: T, s: T) -> (Complex<T>, Comp
     }
 }
 
-/// (quotient,remainder)=function(vec)
-/// - https://nptel.ac.in/content/storage2/courses/122104019/numerical-analysis/Rathish-kumar/ratish-1/f3node9.html
+/// ### solve the roots with Bairstow Method
 pub fn solve<T>(poly: &Vec<T>, eps: T) -> Vec<Complex<T>>
 where
     T: num::Float + num::Signed + std::fmt::Debug,

@@ -1,12 +1,16 @@
+//! # Use Vec as Polynomial
+//!
+//! There some crates for polynomial like following list,
+//! But they are all in development, So I implement what I need in this Module
+//!
+//! - [philippeitis/rustnomial](https://github.com/philippeitis/rustnomial)
+//! - [cargodog/polynomials](https://github.com/cargodog/polynomials)
+
 use num::traits::sign::Signed;
 use num::traits::Num;
 use num::Complex;
 use num::{One, Zero};
 
-/// There some crates for polynomial like following list,
-/// But they are all in development, So I implement what I need
-/// - https://github.com/philippeitis/rustnomial
-/// - https://github.com/cargodog/polynomials
 pub trait Polynomial<T: Num> {
     ///Compute the value for x
     fn eval(&self, x: T) -> T;

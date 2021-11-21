@@ -21,7 +21,7 @@ pub type DType = f64;
 
 #[wasm_bindgen]
 pub fn sine(num: Vec<DType>, den: Vec<DType>, omega: DType) -> Vec<DType> {
-    let g: model::TransferFunction<DType, DType> = model::TransferFunction::from(num, den, None);
+    let g: model::TransferFunction<DType, DType> = model::TransferFunction::from(num, den);
     let r = g.frequency_response(omega);
     vec![r.re, r.im, r.norm(), r.arg()]
 }
