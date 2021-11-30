@@ -19,5 +19,6 @@ For my lack of knowkedge, I want to implement SISO first.
   - python control: [doc](https://python-control.readthedocs.io/en/0.9.0/),[github](https://github.com/python-control/python-control)
   - matlab control: [doc](https://ww2.mathworks.cn/products/control.html)
     - [Linear Analysis](https://ww2.mathworks.cn/help/control/linear-analysis.html?s_tid=CRUX_lftnav)
-- rust related
+- rust science-related projects
   - [dimforge.com](https://dimforge.com/)
+  - [Peroxide](https://github.com/Axect/Peroxide) by [Tae-Geun Kim](https://github.com/Axect)
