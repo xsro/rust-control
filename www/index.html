@@ -41,9 +41,9 @@
 
     <ul class="topnav">
         <li class="right"><a class="active" href=".">主页</a></li>
+        <li><a href="?demo=2">时域分析</a></li>
+        <li><a href="?demo=3">根轨迹图</a></li>
         <li><a href="?demo=1">频率特性</a></li>
-        <li><a href="?demo=2">根轨迹法</a></li>
-        <li><a href="?demo=3">系统辨识</a></li>
     </ul>
 
     <div id="homepage" hidden=true>
@@ -52,7 +52,8 @@
         <p>I make this for fun, don't use this in your production now</p>
         <br>
         <a href="https://github.com/xsro/rust-control">
-            <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/xsro/rust-control?style=flat-square">
+            <img alt="GitHub last commit"
+                src="https://img.shields.io/github/last-commit/xsro/rust-control?style=flat-square">
             <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/xsro/rust-control?style=flat-square">
         </a>
     </div>
@@ -61,57 +62,57 @@
         <h1>典型环节的频率特性</h1>
         <br>
         <div id="demo1-main">
-        <table id="systemlist">
-            <thead>
-                <tr>
-                    <th>环节名称</th>
-                    <th>积分环节</th>
-                    <th>惯性环节</th>
-                    <th>振荡环节</th>
-                    <th>微分环节</th>
-                    <th>一阶微分环节</th>
-                    <th>二阶微分环节</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td>$$\frac{1}{s}$$</td>
-                    <td>$$\frac{1}{Ts+1}$$</td>
-                    <td>$$\frac{1}{\frac{s^2}{\omega_n^2}+2 \zeta \frac{s}{\omega_n}+1}$$</td>
-                    <td>$$s$$</td>
-                    <td>$$Ts+1$$</td>
-                    <td>$$\frac{s^2}{\omega_n^2}+2 \zeta \frac{s}{\omega_n}+1$$</td>
-                </tr>
-                <tr>
-                    <th><input type="checkbox" id='plot0'></input></th>
-                    <th><input type="checkbox" class="sysvisible" id='plot1'></input></th>
-                    <th><input type="checkbox" class="sysvisible" id='plot2' checked=true></input></th>
-                    <th><input type="checkbox" class="sysvisible" id='plot3'></input></th>
-                    <th><input type="checkbox" class="sysvisible" id='plot4'></input></th>
-                    <th><input type="checkbox" class="sysvisible" id='plot5'></input></th>
-                    <th><input type="checkbox" class="sysvisible" id='plot6'></input></th>
-                </tr>
-            </tbody>
-        </table>
+            <table id="systemlist">
+                <thead>
+                    <tr>
+                        <th>环节名称</th>
+                        <th>积分环节</th>
+                        <th>惯性环节</th>
+                        <th>振荡环节</th>
+                        <th>微分环节</th>
+                        <th>一阶微分环节</th>
+                        <th>二阶微分环节</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>$$\frac{1}{s}$$</td>
+                        <td>$$\frac{1}{Ts+1}$$</td>
+                        <td>$$\frac{1}{\frac{s^2}{\omega_n^2}+2 \zeta \frac{s}{\omega_n}+1}$$</td>
+                        <td>$$s$$</td>
+                        <td>$$Ts+1$$</td>
+                        <td>$$\frac{s^2}{\omega_n^2}+2 \zeta \frac{s}{\omega_n}+1$$</td>
+                    </tr>
+                    <tr>
+                        <th><input type="checkbox" id='plot0'></input></th>
+                        <th><input type="checkbox" class="sysvisible" id='plot1'></input></th>
+                        <th><input type="checkbox" class="sysvisible" id='plot2' checked=true></input></th>
+                        <th><input type="checkbox" class="sysvisible" id='plot3'></input></th>
+                        <th><input type="checkbox" class="sysvisible" id='plot4'></input></th>
+                        <th><input type="checkbox" class="sysvisible" id='plot5'></input></th>
+                        <th><input type="checkbox" class="sysvisible" id='plot6'></input></th>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div id="param">
-            <label for="T">时间常数 $T$</label>
-            <input class="sysparam" type="range" id="T" name="T" step=0.01 min=0.1 max=10 value=1>
-            <label id="T-value">1</label>
-            <br>
-            <label for="omega_n">自然频率 $\omega_n$</label>
-            <input class="sysparam" type="range" id="omega_n" name="omega_n" step=0.01 min=0.1 max=10 value=1>
-            <label id="omega_n-value">1</label>
-            <br>
-            <label for="zeta">阻尼比 $\zeta$</label>
-            <input class="sysparam" type="range" id="zeta" name="zeta" step=0.01 max=1 min=0 value=0.4>
-            <label id="zeta-value">0.4</label>
+            <div id="param">
+                <label for="T">时间常数 $T$</label>
+                <input class="sysparam" type="range" id="T" name="T" step=0.01 min=0.1 max=10 value=1>
+                <label id="T-value">1</label>
+                <br>
+                <label for="omega_n">自然频率 $\omega_n$</label>
+                <input class="sysparam" type="range" id="omega_n" name="omega_n" step=0.01 min=0.1 max=10 value=1>
+                <label id="omega_n-value">1</label>
+                <br>
+                <label for="zeta">阻尼比 $\zeta$</label>
+                <input class="sysparam" type="range" id="zeta" name="zeta" step=0.01 max=1 min=0 value=0.4>
+                <label id="zeta-value">0.4</label>
+            </div>
+
+            <div id="bode_plot"></div>
+            <div id="nyquist_plot"></div>
         </div>
-
-        <div id="bode_plot"></div>
-        <div id="nyquist_plot"></div>
-    </div>
     </div>
 
     <noscript>This page contains webassembly and javascript content, please enable javascript in your

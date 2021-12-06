@@ -20,5 +20,6 @@ For my lack of knowkedge, I want to implement SISO first.
   - matlab control: [doc](https://ww2.mathworks.cn/products/control.html)
     - [Linear Analysis](https://ww2.mathworks.cn/help/control/linear-analysis.html?s_tid=CRUX_lftnav)
 - rust science-related projects
-  - [dimforge.com](https://dimforge.com/)
-  - [Peroxide](https://github.com/Axect/Peroxide) by [Tae-Geun Kim](https://github.com/Axect)
+  - [dimforge.com](https://dimforge.com/) by [sebcrozet](https://github.com/sebcrozet)
+    - [nalgebra](https://nalgebra.org/docs/): Linear algebra library
+  - [Peroxide](https://github.com/Axect/Peroxide):Rust numeric library with R, MATLAB & Python syntax by [Tae-Geun Kim](https://github.com/Axect)
